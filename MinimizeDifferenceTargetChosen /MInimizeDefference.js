@@ -1,26 +1,32 @@
-function minimizeTheDifference(mat, val) {
+function minimizeTheDifference(mat, target) {
+
     const m = mat.length;
     const n = mat[0].length;
+    const somaMax = 70 * m; 
   
-    let difMin = Infinity;
+
+    const somas = new Array(m + 1).fill(null).map(() => new Array(somaMax + 1).fill(false));
+    somas[0][0] = true;
   
-    function verAnt(linha, currSum, atualDif) {
-      if (atualDif >= difMin) {
-        return;
-      }
   
-      if (linha === m) {
-        difMin = Math.min(difMin, atualDif);
-        return;
-      }
-  
-      for (let i = 0; i < n; i++) {
-        const somaAtual = currSum + mat[linha][i];
-        const novaDif = Math.abs(val - somaAtual);
-        verAnt(linha + 1, somaAtual, novaDif);
+    for (let i = 1; i <= m; i++) {
+      for (let j = 0; j < n; j++) {
+        for (let k = 0; k <= somaMax; k++) {
+          if (somas[i - 1][k]) {
+            somas[i][k + mat[i - 1][j]] = true;
+          }
+        }
       }
     }
-    verAnt(0, 0, Math.abs(val));
+  
+   
+    let difMin = Infinity;
+    for (let sum = 0; sum <= somaMax; sum++) {
+      if (somas[m][sum]) {
+        difMin = Math.min(difMin, Math.abs(target - sum));
+      }
+    }
+  
     return difMin;
   }
   
