@@ -14,7 +14,7 @@ function maxProfit(prices) {
       
       lucroDia[i][0] = Math.max(lucroDia[i - 1][1] + prices[i], lucroDia[i - 1][0]);
      
-      lucroDia[i][1] = Math.max(lucroDia[i - 1][0] - prices[i], lucroDia[i - 1][0]);
+      lucroDia[i][1] = Math.max(lucroDia[i - 1][0] - prices[i], lucroDia[i - 1][1]);
     }
   
     return lucroDia[n - 1][0];
