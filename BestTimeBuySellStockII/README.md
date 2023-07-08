@@ -1,5 +1,4 @@
-# Nome do Exercício 
-315. Count of Smaller Numbers After Self
+# 122. Best Time to Buy and Sell Stock II
 
 [Link para o exercício](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
 
