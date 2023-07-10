@@ -18,5 +18,18 @@ for (let i = 0; i < n; i++) {
     }
   }
 
-return ;
+// Verifica as substrings de tamanho maior que 2
+  for (let length = 3; length <= n; length++) {
+    for (let i = 0; i < n - length + 1; i++) {
+      const j = i + length - 1;
+      if (s[i] === s[j] && dp[i + 1][j - 1]) {
+        dp[i][j] = true;
+        maxLen = length;
+        start = i;
+      }
+    }
+  }
+
+
+return s.substring(start, start + maxLen);
 };
